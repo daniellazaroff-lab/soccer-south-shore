@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clubul de Fotbal Românesc South Shore</title>
+<meta name="description" content="Clubul de Fotbal Românesc South Shore — fotbal în sală / soccer intérieur / indoor soccer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch-dark:#0F2E22;
+    --turf:#2F6B4F;
+    --turf-soft:#DCEAE1;
+    --gold:#E8B84B;
+    --cream:#F6F3EA;
+    --ink:#16211B;
+    --flag-blue:#002B7F;
+    --flag-yellow:#FCD116;
+    --flag-red:#CE1126;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.55;
+  }
+  h1, h2, .brand{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* tricolor signature rule */
+  .tricolor{
+    height:5px;
+    width:100%;
+    display:flex;
+  }
+  .tricolor span{flex:1;}
+  .tricolor .b{background:var(--flag-blue);}
+  .tricolor .y{background:var(--flag-yellow);}
+  .tricolor .r{background:var(--flag-red);}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--pitch-dark);
+    color:var(--cream);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{
+    font-size:clamp(1rem, 1.6vw, 1.3rem);
+    color:var(--cream);
+    line-height:1.1;
+    max-width:60%;
+  }
+  .brand span{color:var(--gold);}
+  nav.links{display:flex; gap:28px; font-size:0.95rem; font-weight:600;}
+  nav.links a{text-decoration:none; opacity:0.85; transition:opacity .2s;}
+  nav.links a:hover{opacity:1;}
+  .lang-switch{display:flex; gap:6px;}
+  .lang-switch button{
+    background:transparent;
+    border:1.5px solid rgba(246,243,234,0.35);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size:0.8rem;
+    letter-spacing:0.5px;
+    padding:6px 11px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:background .2s, border-color .2s, color .2s;
+  }
+  .lang-switch button:hover{border-color:var(--gold);}
+  .lang-switch button.active{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--pitch-dark);
+  }
+  .mobile-toggle{
+    display:none;
+    background:none; border:none; color:var(--cream);
+    font-size:1.6rem; cursor:pointer;
+  }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex; align-items:flex-end;
+    background:#0d251b;
+    overflow:hidden;
+  }
+  .hero img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+    opacity:0.55;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(15,46,34,0.25) 0%, rgba(15,46,34,0.55) 55%, rgba(15,46,34,0.96) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    max-width:1180px; margin:0 auto;
+    padding:0 24px 64px;
+    color:var(--cream);
+  }
+  .hero-eyebrow{
+    font-weight:700; font-size:0.85rem; letter-spacing:2px;
+    text-transform:uppercase; color:var(--gold);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.02;
+    max-width:16ch;
+  }
+  .hero p{
+    margin-top:20px;
+    font-size:clamp(1rem, 1.6vw, 1.25rem);
+    max-width:44ch;
+    font-weight:500;
+    color:var(--turf-soft);
+  }
+  .hero-cta{
+    margin-top:34px;
+    display:inline-block;
+    background:var(--gold);
+    color:var(--pitch-dark);
+    font-weight:700;
+    padding:14px 30px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:0.95rem;
+    letter-spacing:0.3px;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .hero-cta:hover{transform:translateY(-2px); box-shadow:0 10px 20px rgba(0,0,0,0.25);}
+
+  /* SECTIONS */
+  section{padding:88px 24px;}
+  .section-inner{max-width:1180px; margin:0 auto;}
+  .eyebrow{
+    font-weight:700; font-size:0.82rem; letter-spacing:2px;
+    text-transform:uppercase; color:var(--turf);
+    margin-bottom:10px;
+  }
+  h2{font-size:clamp(1.8rem, 3.6vw, 2.6rem); color:var(--pitch-dark); margin-bottom:22px;}
+
+  .about{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about p{margin-top:16px; font-size:1.05rem; max-width:52ch; color:#374a3f;}
+  .about-figure{
+    position:relative;
+    border-radius:4px;
+    overflow:hidden;
+    aspect-ratio:4/5;
+  }
+  .about-figure img{width:100%; height:100%; object-fit:cover;}
+  .about-figure::before{
+    content:"";
+    position:absolute; inset:0;
+    border:3px solid var(--gold);
+    outline:1px solid var(--pitch-dark);
+    outline-offset:-14px;
+    pointer-events:none;
+  }
+
+  .stats{
+    display:flex;
+    gap:40px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-family:'Anton', sans-serif;
+    font-size:2.1rem;
+    color:var(--turf);
+  }
+  .stat span{font-size:0.85rem; color:#5b6b60; text-transform:uppercase; letter-spacing:0.5px;}
+
+  /* GALLERY */
+  .gallery-section{background:var(--pitch-dark); color:var(--cream);}
+  .gallery-section .eyebrow{color:var(--gold);}
+  .gallery-section h2{color:var(--cream);}
+  .gallery-section > .section-inner > p.lead{
+    max-width:56ch; color:var(--turf-soft); margin-bottom:44px; font-size:1.05rem;
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-auto-rows:230px;
+    gap:14px;
+  }
+  .gallery-grid figure{
+    position:relative;
+    overflow:hidden;
+    border-radius:4px;
+    margin:0;
+    cursor:default;
+  }
+  .gallery-grid figure:nth-child(1){grid-column:span 2; grid-row:span 2;}
+  .gallery-grid figure:nth-child(4){grid-row:span 1;}
+  .gallery-grid img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .gallery-grid figure:hover img{transform:scale(1.06);}
+  .gallery-grid figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:14px 16px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent);
+    font-size:0.85rem; font-weight:600;
+    letter-spacing:0.2px;
+  }
+
+  /* CONTACT / FOOTER */
+  footer{
+    background:#0A2019;
+    color:var(--turf-soft);
+    padding:60px 24px 30px;
+  }
+  .footer-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:36px;
+  }
+  footer h3{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    color:var(--cream);
+    font-size:1.1rem;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  footer p, footer a{font-size:0.92rem; color:var(--turf-soft); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+  .footer-brand{color:var(--cream); font-family:'Anton', sans-serif; font-size:1.3rem; text-transform:uppercase;}
+  .footer-bottom{
+    max-width:1180px; margin:0 auto;
+    padding-top:22px;
+    border-top:1px solid rgba(246,243,234,0.12);
+    font-size:0.8rem;
+    color:#6f8579;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .mobile-toggle{display:block;}
+    .about{grid-template-columns:1fr;}
+    .about-figure{order:-1; aspect-ratio:16/10;}
+    .gallery-grid{grid-template-columns:repeat(2, 1fr); grid-auto-rows:180px;}
+    .gallery-grid figure:nth-child(1){grid-column:span 2; grid-row:span 1;}
+    .footer-grid{grid-template-columns:1fr; gap:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tricolor"><span class="b"></span><span class="y"></span><span class="r"></span></div>
+  <div class="nav-inner">
+    <div class="brand">C.F.R. <span>South Shore</span></div>
+    <nav class="links">
+      <a href="#about" data-i18n="nav.about">Despre</a>
+      <a href="#gallery" data-i18n="nav.gallery">Galerie</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button data-lang="ro" class="active">RO</button>
+      <button data-lang="fr">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1760174034302-e4e8177569ff?auto=format&fit=crop&w=1800&q=80" alt="Indoor soccer court">
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Club de fotbal în sală</div>
+    <h1 data-i18n="hero.title">Clubul de Fotbal Românesc South Shore</h1>
+    <p data-i18n="hero.subtitle">Pasiune românească, spirit de echipă — pe iarba artificială, în fiecare săptămână.</p>
+    <a href="#contact" class="hero-cta" data-i18n="hero.cta">Alătură-te echipei</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner about">
+    <div>
+      <div class="eyebrow" data-i18n="about.eyebrow">Cine suntem</div>
+      <h2 data-i18n="about.title">Despre Club</h2>
+      <p data-i18n="about.p1">Suntem o comunitate de jucători români și prieteni ai comunității din South Shore, uniți de dragostea pentru fotbal. Ne întâlnim regulat pe teren de iarbă artificială, indiferent de anotimp sau vreme.</p>
+      <p data-i18n="about.p2">Toate nivelurile sunt binevenite — de la începători pasionați până la foști jucători legitimați. Contează doar dorința de a juca și respectul pentru colegii de echipă.</p>
+      <div class="stats">
+        <div class="stat"><b data-i18n="about.stat1n">100%</b><span data-i18n="about.stat1l">Teren acoperit</span></div>
+        <div class="stat"><b data-i18n="about.stat2n">3</b><span data-i18n="about.stat2l">Limbi vorbite</span></div>
+        <div class="stat"><b data-i18n="about.stat3n">7/7</b><span data-i18n="about.stat3l">Spirit de echipă</span></div>
+      </div>
+    </div>
+    <div class="about-figure">
+      <img src="https://images.unsplash.com/photo-1587384474964-3a06ce1ce699?auto=format&fit=crop&w=900&q=80" alt="Soccer ball on indoor turf">
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery-section">
+  <div class="section-inner">
+    <div class="eyebrow" data-i18n="gallery.eyebrow">Momente de pe teren</div>
+    <h2 data-i18n="gallery.title">Galerie</h2>
+    <p class="lead" data-i18n="gallery.lead">Câteva imagini cu terenul nostru de iarbă artificială și cu jucătorii în acțiune. Fotografiile de club vor înlocui curând aceste imagini de prezentare.</p>
+    <div class="gallery-grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1763775594018-4a84eeadd83d?auto=format&fit=crop&w=1200&q=80" alt="Players competing indoor">
+        <figcaption data-i18n="gallery.cap1">Jucători în acțiune pe teren</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1645199189393-ac9e474d1e4e?auto=format&fit=crop&w=800&q=80" alt="Group playing indoor soccer">
+        <figcaption data-i18n="gallery.cap2">Echipa la antrenament</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1583558952124-8a5c7f29ab35?auto=format&fit=crop&w=800&q=80" alt="Ball on artificial turf">
+        <figcaption data-i18n="gallery.cap3">Iarba artificială a terenului</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1760174083916-ea7d00664d58?auto=format&fit=crop&w=800&q=80" alt="Two players challenging for the ball">
+        <figcaption data-i18n="gallery.cap4">Duel pentru minge</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">C.F.R. South Shore</div>
+      <p style="margin-top:12px; max-width:34ch;" data-i18n="footer.about">Clubul de Fotbal Românesc South Shore — comunitate, fotbal în sală și prietenie.</p>
+    </div>
+    <div>
+      <h3 data-i18n="footer.h1">Contact</h3>
+      <p><a href="mailto:contact@cfrsouthshore.ca">contact@cfrsouthshore.ca</a></p>
+      <p data-i18n="footer.location">South Shore, Québec</p>
+    </div>
+    <div>
+      <h3 data-i18n="footer.h2">Urmăriți-ne</h3>
+      <p><a href="#" data-i18n="footer.social1">Facebook (link în curând)</a></p>
+      <p><a href="#" data-i18n="footer.social2">Instagram (link în curând)</a></p>
+    </div>
+  </div>
+  <div class="tricolor" style="max-width:1180px;margin:0 auto 22px;"><span class="b"></span><span class="y"></span><span class="r"></span></div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.copy">© 2026 Clubul de Fotbal Românesc South Shore. Toate drepturile rezervate.</span>
+    <span data-i18n="footer.made">Fotbal în sală, tot anul.</span>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  ro: {
+    "nav.about":"Despre", "nav.gallery":"Galerie", "nav.contact":"Contact",
+    "hero.eyebrow":"Club de fotbal în sală",
+    "hero.title":"Clubul de Fotbal Românesc South Shore",
+    "hero.subtitle":"Pasiune românească, spirit de echipă — pe iarba artificială, în fiecare săptămână.",
+    "hero.cta":"Alătură-te echipei",
+    "about.eyebrow":"Cine suntem", "about.title":"Despre Club",
+    "about.p1":"Suntem o comunitate de jucători români și prieteni ai comunității din South Shore, uniți de dragostea pentru fotbal. Ne întâlnim regulat pe teren de iarbă artificială, indiferent de anotimp sau vreme.",
+    "about.p2":"Toate nivelurile sunt binevenite — de la începători pasionați până la foști jucători legitimați. Contează doar dorința de a juca și respectul pentru colegii de echipă.",
+    "about.stat1n":"100%", "about.stat1l":"Teren acoperit",
+    "about.stat2n":"3", "about.stat2l":"Limbi vorbite",
+    "about.stat3n":"7/7", "about.stat3l":"Spirit de echipă",
+    "gallery.eyebrow":"Momente de pe teren", "gallery.title":"Galerie",
+    "gallery.lead":"Câteva imagini cu terenul nostru de iarbă artificială și cu jucătorii în acțiune. Fotografiile de club vor înlocui curând aceste imagini de prezentare.",
+    "gallery.cap1":"Jucători în acțiune pe teren", "gallery.cap2":"Echipa la antrenament",
+    "gallery.cap3":"Iarba artificială a terenului", "gallery.cap4":"Duel pentru minge",
+    "footer.about":"Clubul de Fotbal Românesc South Shore — comunitate, fotbal în sală și prietenie.",
+    "footer.h1":"Contact", "footer.location":"South Shore, Québec",
+    "footer.h2":"Urmăriți-ne", "footer.social1":"Facebook (link în curând)", "footer.social2":"Instagram (link în curând)",
+    "footer.copy":"© 2026 Clubul de Fotbal Românesc South Shore. Toate drepturile rezervate.",
+    "footer.made":"Fotbal în sală, tot anul."
+  },
+  fr: {
+    "nav.about":"À propos", "nav.gallery":"Galerie", "nav.contact":"Contact",
+    "hero.eyebrow":"Club de soccer intérieur",
+    "hero.title":"Club de Football Roumain South Shore",
+    "hero.subtitle":"Passion roumaine, esprit d'équipe — sur gazon artificiel, chaque semaine.",
+    "hero.cta":"Rejoindre l'équipe",
+    "about.eyebrow":"Qui nous sommes", "about.title":"À propos du Club",
+    "about.p1":"Nous sommes une communauté de joueurs roumains et d'amis de la communauté de la Rive-Sud, unis par l'amour du football. Nous nous rencontrons régulièrement sur un terrain en gazon artificiel, peu importe la saison.",
+    "about.p2":"Tous les niveaux sont les bienvenus — des débutants passionnés aux anciens joueurs licenciés. Seule compte l'envie de jouer et le respect des coéquipiers.",
+    "about.stat1n":"100%", "about.stat1l":"Terrain couvert",
+    "about.stat2n":"3", "about.stat2l":"Langues parlées",
+    "about.stat3n":"7/7", "about.stat3l":"Esprit d'équipe",
+    "gallery.eyebrow":"Moments sur le terrain", "gallery.title":"Galerie",
+    "gallery.lead":"Quelques images de notre terrain en gazon artificiel et de nos joueurs en action. Des photos du club remplaceront bientôt ces images de présentation.",
+    "gallery.cap1":"Joueurs en action sur le terrain", "gallery.cap2":"L'équipe à l'entraînement",
+    "gallery.cap3":"Le gazon artificiel du terrain", "gallery.cap4":"Duel pour le ballon",
+    "footer.about":"Club de Football Roumain South Shore — communauté, soccer intérieur et amitié.",
+    "footer.h1":"Contact", "footer.location":"Rive-Sud, Québec",
+    "footer.h2":"Suivez-nous", "footer.social1":"Facebook (lien à venir)", "footer.social2":"Instagram (lien à venir)",
+    "footer.copy":"© 2026 Club de Football Roumain South Shore. Tous droits réservés.",
+    "footer.made":"Soccer intérieur, toute l'année."
+  },
+  en: {
+    "nav.about":"About", "nav.gallery":"Gallery", "nav.contact":"Contact",
+    "hero.eyebrow":"Indoor soccer club",
+    "hero.title":"Romanian Football Club South Shore",
+    "hero.subtitle":"Romanian passion, team spirit — on artificial turf, every week.",
+    "hero.cta":"Join the team",
+    "about.eyebrow":"Who we are", "about.title":"About the Club",
+    "about.p1":"We're a community of Romanian players and South Shore community friends, united by a love of soccer. We meet regularly on artificial turf, no matter the season or weather.",
+    "about.p2":"All levels are welcome — from enthusiastic beginners to former licensed players. All that matters is the will to play and respect for teammates.",
+    "about.stat1n":"100%", "about.stat1l":"Covered field",
+    "about.stat2n":"3", "about.stat2l":"Languages spoken",
+    "about.stat3n":"7/7", "about.stat3l":"Team spirit",
+    "gallery.eyebrow":"Moments on the pitch", "gallery.title":"Gallery",
+    "gallery.lead":"A few images of our artificial turf field and players in action. Club photos will replace these placeholder images soon.",
+    "gallery.cap1":"Players in action on the field", "gallery.cap2":"The team training",
+    "gallery.cap3":"The field's artificial turf", "gallery.cap4":"Duel for the ball",
+    "footer.about":"Romanian Football Club South Shore — community, indoor soccer and friendship.",
+    "footer.h1":"Contact", "footer.location":"South Shore, Quebec",
+    "footer.h2":"Follow us", "footer.social1":"Facebook (link coming soon)", "footer.social2":"Instagram (link coming soon)",
+    "footer.copy":"© 2026 Romanian Football Club South Shore. All rights reserved.",
+    "footer.made":"Indoor soccer, all year round."
+  }
+};
+
+function setLanguage(lang){
+  const dict = translations[lang];
+  if(!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key];
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-switch button').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  try{ localStorage.setItem('cfr_lang', lang); }catch(e){}
+}
+
+document.querySelectorAll('.lang-switch button').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLanguage(btn.getAttribute('data-lang')));
+});
+
+let saved = 'ro';
+try{ saved = localStorage.getItem('cfr_lang') || 'ro'; }catch(e){}
+setLanguage(saved);
+</script>
+
+</body>
+</html>
